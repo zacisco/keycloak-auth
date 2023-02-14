@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+  servlet:
+    encoding:
+      charset: UTF-8 # Charset of HTTP requests and responses. Added to the "Content-Type" header if not set explicitly
+      enabled: true # Enable http encoding support
+      force: true
+
+  error:
+    whitelabel:
+      enabled: false
+    include-message: always
+
+spring:
+#  application.name: ${APPLICATION_NAME:spring-security-keycloak-resource}
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+#          jwk-set-uri: ${KEYCLOAK_REALM_CERT_URL:http://localhost:8484/auth/realms/test/protocol/openid-connect/certs}
+          issuer-uri: ${KEYCLOAK_REALM_URL}
+
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: keycloak-auth
+##            client-secret: demoapp
+##            clientName: Keycloak
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak-auth
+#            scope:
+#              - openid
+#              - profile
+#              - email
+#        provider:
+#          keycloak:
+#            issuer-uri : http://localhost:8484/auth/realms/test
+
+  jackson:
+    default-property-inclusion: non_null
